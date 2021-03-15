@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import time
 import rospy
 from api import Turtlebot
@@ -6,14 +7,14 @@ from api import Turtlebot
 def tester():
 
     robot = Turtlebot()
-    ir_left, ir_right = robot.get_sensor()
+
     print "bringup finished"
     rate = rospy.Rate(200)
     state = 0
     while not rospy.is_shutdown():
-
-        ir_right, ir_left = robot.get_sensor()        
-                 
+    
+        ir_left = robot.get_sensor(0) #get value from 1st sensor
+        ir_right = robot.get_sensor(1) #get value from 2nd sensor
         if ir_right > 50 and ir_left > 50 :
             state = 0
         elif ir_right > 50 and ir_left < 50 :

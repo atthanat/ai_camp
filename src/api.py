@@ -8,8 +8,9 @@ class Turtlebot:
         rospy.init_node('commander', anonymous=True)
         self.vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
         rospy.Subscriber("/cmd_vel", Twist, self.vel_callback)
+        
+        self.sensor_msg = None
         rospy.Subscriber("/infrared_topic", Int32MultiArray, self.sensor_callback)
-
         self.current_vel = Twist()
 
         rospy.sleep(1)  # set some delay for node settling
@@ -26,8 +27,11 @@ class Turtlebot:
     def get_vel(self):
         return self.current_vel
 
-    def get_sensor(self):
-        return self.sensor_msg.data[0:2]
+    def get_sensor(self, number_sensors=0):
+        if self.sensor_msg != None :
+            return self.sensor_msg.data[number_sensors]
+        else:
+            return 0
 
     def get_battery(self):
         pass
