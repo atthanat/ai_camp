@@ -1,4 +1,4 @@
 <launch>
-    <machine name="turtlebot" address="10.204.226.85" user="pi" default="true" env-loader="~/env.sh"/>
+    <!--machine name="turtlebot" address="10.204.226.85" user="pi" default="true" env-loader="~/env.sh"/-->
     <include file="$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch"/>
 </launch>
